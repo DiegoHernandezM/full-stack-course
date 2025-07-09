@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant Usuario
+    participant Navegador
+    participant Servidor
+
+    Usuario->>Navegador: Escribe una nota y hace clic en "Save"
+    Note right of Navegador: JS captura evento submit del formulario
+    Navegador->>Servidor: POST /new_note con datos del formulario (nota, fecha)
+    Servidor-->>Navegador: 302 Redirect a /notes
+    Navegador->>Servidor: GET /notes
+    Servidor-->>Navegador: HTML de la lista de notas
+    Navegador->>Servidor: GET /main.css
+    Servidor-->>Navegador: CSS
+    Navegador->>Servidor: GET /main.js
+    Servidor-->>Navegador: JavaScript
+    Note right of Navegador: JS renderiza las notas en el DOM
