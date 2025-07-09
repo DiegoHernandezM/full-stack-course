@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant Usuario
+    participant Navegador
+    participant Servidor
+
+    Usuario->>Navegador: Accede a /spa
+    Navegador->>Servidor: GET /spa
+    Servidor-->>Navegador: HTML (SPA shell)
+    
+    Navegador->>Servidor: GET /main.css
+    Servidor-->>Navegador: CSS
+
+    Navegador->>Servidor: GET /spa.js
+    Servidor-->>Navegador: JavaScript
+
+    Note right of Navegador: JS maneja renderizado de la app
+
+    Navegador->>Servidor: GET /data.json
+    Servidor-->>Navegador: JSON con lista de notas
+
+    Note right of Navegador: JS renderiza notas sin recargar la página

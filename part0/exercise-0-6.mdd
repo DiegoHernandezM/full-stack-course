@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant Usuario
+    participant Navegador
+    participant Servidor
+
+    Usuario->>Navegador: Escribe nota y hace clic en "Save"
+    Note right of Navegador: JS captura evento (submit)
+    Note right of Navegador: Crea objeto nota con contenido + fecha
+
+    Navegador->>Servidor: POST /new_note_spa con la nota (JSON)
+    Servidor-->>Navegador: 201 Created (respuesta vacía o confirmación)
+
+    Note right of Navegador: JS añade la nota directamente al DOM (sin recargar)
