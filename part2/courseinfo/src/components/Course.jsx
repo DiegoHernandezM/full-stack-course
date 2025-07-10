@@ -29,14 +29,13 @@ const Content = (props) => {
 const Part = (props) => {
     return (
         <div>
-            {props.part.map(part => {
-                return (
-                    <>
-                        <p>{part.name} {part.exercises}</p>
-                    </>
-                    
-                )
-            })}
+            <ul>
+                {props.part.map(part => {
+                    return (
+                        <li key={part.id}>{part.name} {part.exercises}</li>
+                    )
+                })}
+            </ul>
 
         </div>
     )
