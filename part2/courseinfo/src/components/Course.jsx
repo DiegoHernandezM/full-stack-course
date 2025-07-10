@@ -27,6 +27,7 @@ const Content = (props) => {
 }
 
 const Part = (props) => {
+    const totalExercises = props.part.reduce((acc, part) => acc + part.exercises, 0);
     return (
         <div>
             <ul>
@@ -36,7 +37,7 @@ const Part = (props) => {
                     )
                 })}
             </ul>
-
+            <p>total of {totalExercises} exercises</p>
         </div>
     )
 }
