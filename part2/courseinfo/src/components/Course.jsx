@@ -1,46 +1,53 @@
-import React from "react";
+import React from 'react';
 
 const Course = (props) => {
-    return (
-        <div>
-            <Header name={props.course.name} />
-            <Content course={props.course} />
-        </div>
-    )
-
-}
+  return (
+    <div>
+      <h1>Web development curriculum</h1>
+      {props.courses.map(course => (
+        <React.Fragment key={course.id}>
+          <Header name={course.name} />
+          <Content course={course.parts} />
+          <Total course={course.parts} />
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
 
 const Header = (props) => {
-    return (
-        <div>
-            <h1>{props.name}</h1>
-        </div>
-    )
+  return (
+    <div>
+      <h2>{props.name}</h2>
+    </div>
+  )
 }
 
 const Content = (props) => {
-    return (
-        <div>
-            <Part part={props.course.parts} />
-        </div>
-    )
-}
+  return (
+    <>
+      {props.course.map(part => (
+        <Part key={part.id} part={part} />
+      ))}
+    </>
+  );
+};
+
 
 const Part = (props) => {
-    const totalExercises = props.part.reduce((acc, part) => acc + part.exercises, 0);
-    return (
-        <div>
-            <ul>
-                {props.part.map(part => {
-                    return (
-                        <li key={part.id}>{part.name} {part.exercises}</li>
-                    )
-                })}
-            </ul>
-            <p>total of {totalExercises} exercises</p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <ul>
+        <li>{props.part.name} {props.part.exercises}</li>
+      </ul>
+    </div>
+  );
+};
+
+const Total = ({ course }) => {
+  const total = course.reduce((sum, part) => sum + part.exercises, 0);
+  return <p><strong>Total of {total} exercises</strong></p>;
+};
 
 
 export default Course
